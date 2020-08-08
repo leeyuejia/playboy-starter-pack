@@ -5,6 +5,7 @@ const { ensureAuthenticated } = require('../config/auth');
 const PunsController = require('../controllers/punsController');
 
 router.post('/pun', ensureAuthenticated, PunsController.createPun);
+router.post('/pun/:id/comment', ensureAuthenticated, PunsController.createPunComment);
 router.get('/puns', ensureAuthenticated, PunsController.getPuns);
 router.get('/pun/:id', ensureAuthenticated, PunsController.getPunById);
 router.get('/puns/:username', ensureAuthenticated, PunsController.getPunsByUsername);

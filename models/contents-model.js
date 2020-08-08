@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const subCommentSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        auto: true
+    },
     commentedBy: String,
     description: String
 });
@@ -14,9 +18,19 @@ const ContentsSchema = new Schema(
             required: true
         },
         content: String,
-        caption: String,
+        caption: {
+            type: String,
+            default: ''
+        },
         comments: [subCommentSchema],
-        hashtag: [String],
+        likes: {
+            type: Number,
+            default: 0
+        },
+        hashtag: [{
+            type: String,
+            default: ''
+        }],
         contentType: {
             type: String,
             required: true

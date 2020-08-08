@@ -48,7 +48,7 @@ module.exports = {
   },
   logout(req, res) {
     req.logout();
-    res.status(200).send('User logged out!')
+    res.status(200).send('User logged out!');
   },
   
   updateUser(req, res) {

@@ -12,7 +12,7 @@ const app = express();
 
 // Imports
 require('./db');
-const { MemesRouter, GifsRouter, PunsRouter, UsersRouter } = require('./routes');
+const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = require('./routes');
 
 // Middleware
 
@@ -38,7 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use('/app', MemesRouter, GifsRouter, PunsRouter, UsersRouter);
+app.use('/app', MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter);
 
 // Start Server
 app.listen(PORT, () => {
