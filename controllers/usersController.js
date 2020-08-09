@@ -97,5 +97,21 @@ module.exports = {
           })
         }
       })
+  },
+  async getUserbyUsername (req, res) {
+    try {
+      await User.findOne({ username: req.params.username }, (err, user) => {
+        if (err) {
+          return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!user) {
+          return res.status(404).json({ success: false, error: 'User not found' })
+        }
+        return res.status(200).json(user)
+      })
+    } catch(err) {
+      console.log(err)
+    }
   }
 }

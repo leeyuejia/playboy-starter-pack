@@ -16,4 +16,10 @@ router.get(
     GeneralController.getOneContent
     );
 
+router.delete(
+    '/content/:id', 
+    ensureAuthenticated, 
+    GeneralController.deleteContent
+    );
+
 module.exports = router;
