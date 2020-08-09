@@ -7,7 +7,7 @@ const GifsController = require('../controllers/gifsController');
 
 router.post('/gif', ensureAuthenticated, GifsController.createGif);
 // create comment route
-router.post('/gif/:id/comment', ensureAuthenticated, GifsController.createGifComment);
+// router.post('/gif/:id/comment', ensureAuthenticated, GifsController.createGifComment);
 
 router.get('/gifs', ensureAuthenticated, GifsController.getGifs);
 router.get('/gif/:id', ensureAuthenticated, GifsController.getGifById);
