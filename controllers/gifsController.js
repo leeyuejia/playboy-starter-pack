@@ -59,6 +59,10 @@ module.exports = {
         }
     },
     async getGifById(req, res) {
+
+        gif.caption = body.caption;
+        gif.imgUrl = body.imgUrl;
+
         try {
             await Content.findOne({ _id: req.params.id }, (err, gif) => {
                 if (err) {
