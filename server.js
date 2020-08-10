@@ -18,9 +18,21 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let allowedOrigins = ['http://localhost:8000', 'https://playboy-starter-pack-frontend.herokuapp.com'];
 app.use(
   cors({
-    origin: 'https://playboy-starter-pack-frontend.herokuapp.com/' || "http://localhost:8000", // <-- location of the react app we are connecting to
+    origin: function (origin, callback) {
+      // allow requests with no origin 
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        let msg = 'The CORS policy for this site does not ' +
+          'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   })
 );
@@ -42,5 +54,5 @@ app.use('/app', MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter)
 
 // Start Server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
