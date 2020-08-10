@@ -21,5 +21,6 @@ router.delete(
     ensureAuthenticated, 
     GeneralController.deleteContent
     );
+router.put('/content/:username', ensureAuthenticated, GeneralController.updateContentByUsername)
 
 module.exports = router;
