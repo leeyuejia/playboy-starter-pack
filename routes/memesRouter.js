@@ -6,7 +6,6 @@ const MemesController = require('../controllers/memesController');
 
 
 router.post('/meme', ensureAuthenticated, MemesController.createMeme);
-router.post('/meme/:id/comment', ensureAuthenticated, MemesController.createMemesComment);
 router.get('/memes', ensureAuthenticated, MemesController.getMemes);
 router.get('/meme/:id', ensureAuthenticated, MemesController.getMemeById);
 router.get('/memes/:username', ensureAuthenticated, MemesController.getMemesByUsername);

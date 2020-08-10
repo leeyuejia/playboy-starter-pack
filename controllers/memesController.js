@@ -103,7 +103,6 @@ module.exports = {
                 error: 'You must provide a body to update'
             })
         }
-
         Content.findOne({ _id: req.params.id }, async (err, meme) => {
             if (err) {
                 return res.status(404).json({
@@ -155,46 +154,5 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
-    },
-    async createMemesComment (req,res) {
-        const body = req.body; 
-        if (!body) {
-            return res.status(400).json({
-                success: false,
-                error: 'You must provide a body to create comment'
-            })
-        }
-        Content.findOneAndUpdate(
-            { _id:req.params.id, contentType: 'Meme'},
-            {
-                $push:{
-                    comments: {
-                        commentedBy : body.currentUser,
-                        description : body.comment
-                    }
-                }
-            },
-            async (err,result) => {
-                console.log(result)
-                if(err) {
-                    return res.status(404).json({
-                        err,
-                        message: `unable to post comment due to ${err.message}`
-                    })
-                }
-                try {
-                    await result.save();
-                    return res.status(200).json({
-                        success:true,
-                        id: result._id,
-                        message: 'comment posted'
-                    })
-                } catch (err) {
-                    return res.status(400).json({
-                        err,
-                        message :`unable to post comment due to ${err.message}`
-                    })
-                }
-            });
     },
 }

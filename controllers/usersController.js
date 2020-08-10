@@ -19,28 +19,33 @@ module.exports = {
       }
     })(req, res, next);
   },
-  register(req, res) {
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-      if (err) throw err;
-      if (doc) res.status(400).send("User Already Exists");
-      if (!doc) {
-        try {
-          const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-          const newUser = new User({
-            username: req.body.username,
-            email: req.body.email,
-            profileImg: req.body.profileImg,
-            profileBio: req.body.profileBio,
-            password: hashedPassword,
-          });
-          await newUser.save();
-          res.status(201).send('User created!');
-        } catch (err) {
-          console.log(err)
+  async register(req, res) {
+    try {
+      await User.findOne({ $or:[{username: req.body.username}, {email: req.body.email}] }, async (err, doc) => {
+        if (err) throw err;
+        if (doc) return res.status(201).json(doc)
+        if (!doc) {
+          try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  
+            const newUser = new User({
+              username: req.body.username,
+              email: req.body.email,
+              profileImg: req.body.profileImg,
+              profileBio: req.body.profileBio,
+              password: hashedPassword,
+            });
+            await newUser.save();
+            res.status(201).send('User created!');
+          } catch (err) {
+            console.log(err)
+          }
         }
-      }
-    });
+      });
+    } catch (err) {
+      console.log(err)
+    }
+    
   },
   getUser(req, res) {
     res.send(req.user) // The req.user stores the entire user that has been authenticated inside of it. 
@@ -92,5 +97,21 @@ module.exports = {
           })
         }
       })
+  },
+  async getUserbyUsername (req, res) {
+    try {
+      await User.findOne({ username: req.params.username }, (err, user) => {
+        if (err) {
+          return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!user) {
+          return res.status(404).json({ success: false, error: 'User not found' })
+        }
+        return res.status(200).json(user)
+      })
+    } catch(err) {
+      console.log(err)
+    }
   }
 }
