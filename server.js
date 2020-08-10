@@ -18,23 +18,13 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(
   cors({
-    origin: 'https://playboy-starter-pack-frontend.herokuapp.com/' || 'http://localhost:8000',
+    origin: 'https://playboy-starter-pack-frontend.herokuapp.com',
     credentials: true,
     methods: 'GET, PUT, POST, DELETE'
   })
 );
-app.options('*', cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use(
   session({
