@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'https://playboy-starter-pack-frontend.herokuapp.com' || "http://localhost:8000", // <-- location of the react app we are connecting to
+    origin: 'http://playboy-starter-pack-frontend.herokuapp.com' || "http://localhost:8000", // <-- location of the react app we are connecting to
     credentials: true,
   })
 );
