@@ -18,9 +18,17 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const whitelist = ['https://playboy-starter-pack-frontend.herokuapp.com/', 'http://localhost:8000']
 app.use(
   cors({
-    origin: 'http://playboy-starter-pack-frontend.herokuapp.com' || "http://localhost:8000", // <-- location of the react app we are connecting to
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
   })
 );
@@ -42,5 +50,5 @@ app.use('/app', MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter)
 
 // Start Server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
