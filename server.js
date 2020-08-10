@@ -19,17 +19,11 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const whitelist = ['https://playboy-starter-pack-frontend.herokuapp.com/', 'http://localhost:8000']
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
+    origin: 'https://playboy-starter-pack-frontend.herokuapp.com/' || 'http://localhost:8000',
     credentials: true,
+    methods: 'GET, PUT, POST, DELETE'
   })
 );
 app.options('*', cors());
