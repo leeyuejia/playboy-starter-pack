@@ -111,6 +111,7 @@ module.exports = {
                 })
             }
 
+            meme.content = body.content;
             meme.caption = body.caption;
             meme.likes = body.likes;
 

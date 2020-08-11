@@ -112,6 +112,7 @@ module.exports = {
                 })
             }
 
+            gif.content = body.content;
             gif.caption = body.caption;
             gif.likes = body.likes;
 
