@@ -9,8 +9,14 @@
 description
 
 ## Application link
+-- (link to repo)
+- link to backend repo --> https://github.com/leeyuejia/playboy-starter-pack
+- link to frontend repo --> https://github.com/leeyuejia/playboy-starter-pack-frontend
 
-- (link to application)
+-- (link to deployment)
+- backend deployed link ==> https://playboy-starter-pack-backend.herokuapp.com/app
+- frontend deployed link ==> https://playboy-starter-pack-frontend.herokuapp.com/
+
 
 ## Table of Contents
 - [Introduction](#Introduction)
