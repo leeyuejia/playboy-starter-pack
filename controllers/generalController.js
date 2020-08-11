@@ -79,5 +79,24 @@ module.exports = {
         } catch (err) {
             console.log(err)
         }
+    },
+    async editContent (req,res) {
+        try {
+            await Content.updateOne({_id:req.params.id},(err,result) => {
+                console.log(result)
+                if (err) {
+                    return res.status(400).json({
+                        success: false,
+                        error: err
+                    })
+                }
+                return res.status(200).json({
+                    success: true,
+                    data: result
+                })
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 }

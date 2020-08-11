@@ -22,4 +22,10 @@ router.delete(
     GeneralController.deleteContent
     );
 
+router.put(
+    '/content/:id',
+    ensureAuthenticated,
+    GeneralController.editContent
+)
+
 module.exports = router;

@@ -11,5 +11,6 @@ router.get('/gif/:id', ensureAuthenticated, GifsController.getGifById);
 router.get('/gifs/:username', ensureAuthenticated, GifsController.getGifsByUsername);
 router.put('/gif/:id', ensureAuthenticated, GifsController.updateGif);
 router.delete('/gif/:id', ensureAuthenticated, GifsController.deleteGif);
+router.put('/gif/:id', ensureAuthenticated, GifsController.editGif);
 
 module.exports = router;

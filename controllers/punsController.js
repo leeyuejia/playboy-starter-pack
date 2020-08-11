@@ -156,4 +156,30 @@ module.exports = {
             console.log(err)
         }
     },
+    async editPun(req, res) {
+        try {
+            await Content.findOneAndUpdate({ _id: req.params.id }, (err, pun) => {
+                if (err) {
+                    return res.status(400).json({
+                        success: false,
+                        error: err
+                    })
+                }
+
+                if (!pun) {
+                    return res.status(404).json({
+                        success: false,
+                        error: 'Pun not found'
+                    })
+                }
+
+                return res.status(200).json({
+                    success: true,
+                    data: pun
+                })
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    },
 }

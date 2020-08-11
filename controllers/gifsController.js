@@ -160,4 +160,30 @@ module.exports = {
             console.log(err)
         }
     },
+    async editGif(req, res) {
+        try {
+            await Content.findOneAndUpdate({ _id: req.params.id }, (err, gif) => {
+                if (err) {
+                    return res.status(400).json({
+                        success: false,
+                        error: err
+                    })
+                }
+
+                if (!gif) {
+                    return res.status(404).json({
+                        success: false,
+                        error: 'Gif not found'
+                    })
+                }
+
+                return res.status(200).json({
+                    success: true,
+                    data: gif
+                })
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    },
 }

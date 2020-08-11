@@ -11,5 +11,6 @@ router.get('/meme/:id', ensureAuthenticated, MemesController.getMemeById);
 router.get('/memes/:username', ensureAuthenticated, MemesController.getMemesByUsername);
 router.put('/meme/:id', ensureAuthenticated, MemesController.updateMeme);
 router.delete('/meme/:id', ensureAuthenticated, MemesController.deleteMeme);
+router.put('/meme/:id', ensureAuthenticated, MemesController.editMeme);
 
 module.exports = router;

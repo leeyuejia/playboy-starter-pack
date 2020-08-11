@@ -155,4 +155,30 @@ module.exports = {
             console.log(err)
         }
     },
+    async editMeme(req, res) {
+        try {
+            await Content.findOneAndUpdate({ _id: req.params.id }, (err, meme) => {
+                if (err) {
+                    return res.status(400).json({
+                        success: false,
+                        error: err
+                    })
+                }
+
+                if (!meme) {
+                    return res.status(404).json({
+                        success: false,
+                        error: 'Meme not found'
+                    })
+                }
+
+                return res.status(200).json({
+                    success: true,
+                    data: meme
+                })
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    },
 }
