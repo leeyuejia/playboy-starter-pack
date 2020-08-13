@@ -48,7 +48,7 @@ module.exports = {
     
   },
   getUser(req, res) {
-    res.json(req.user) // The req.user stores the entire user that has been authenticated inside of it. 
+    res.send(req.user) // The req.user stores the entire user that has been authenticated inside of it. 
     //can be used for the rest of the app
   },
   logout(req, res) {
