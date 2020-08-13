@@ -43,8 +43,8 @@ app.use(
 app.use(
   session({
     secret: "secretcode",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
   })
 );
 
