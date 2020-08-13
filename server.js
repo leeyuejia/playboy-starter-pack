@@ -26,27 +26,27 @@ app.use(
   })
 );
 
-let sess = {
-  secret: 'secretcode',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {}
-}
+// let sess = {
+//   secret: 'secretcode',
+//   resave: true,
+//   saveUninitialized: true,
+//   cookie: {}
+// }
 
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
-}
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1) // trust first proxy
+//   sess.cookie.secure = true // serve secure cookies
+// }
 
-app.use(session(sess));
+// app.use(session(sess));
 
-// app.use(
-//   session({
-//     secret: "secretcode",
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
+app.use(
+  session({
+    secret: "secretcode",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use(cookieParser("secretcode"));
 app.use(passport.initialize());
