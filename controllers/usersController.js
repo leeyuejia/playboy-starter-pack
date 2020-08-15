@@ -1,10 +1,10 @@
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-require('../config/user')(passport);
+// require('../config/user')(passport);
 const User = require('../models/user-model');
-const user = require("../config/user");
-const bodyParser = require("body-parser");
+// const user = require("../config/user");
+// const bodyParser = require("body-parser");
 
 module.exports = {
   login(req, res, next) {
@@ -12,7 +12,8 @@ module.exports = {
       if (err) throw err;
       if (!user) res.status(400).send("No User Exists");
       else {
-        req.logIn(user, (err) => {
+        req.login(user, (err) => {
+          // req.session.user = req.user;
           if (err) throw err;
           res.status(201).send("Successfully Authenticated");
         });

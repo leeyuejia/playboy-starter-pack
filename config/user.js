@@ -22,10 +22,15 @@ module.exports = function (passport) {
 
   passport.serializeUser((user, cb) => {
     cb(null, user.id);
+    console.log(user)
+    console.log('serial')
   });
+
   passport.deserializeUser((id, cb) => {
-    User.findOne({ _id: id }, (err, user) => {
+    User.findById(id, (err, user) => {
       cb(err, user);
+      console.log(user)
+      console.log('deserial')
     });
   });
 };

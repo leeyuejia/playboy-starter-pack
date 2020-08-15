@@ -112,6 +112,7 @@ module.exports = {
                 })
             }
 
+            pun.content = body.content;
             pun.caption = body.caption;
             pun.likes = body.likes;
 
