@@ -13,6 +13,7 @@ module.exports = {
       if (!user) res.status(400).send("No User Exists");
       else {
         req.logIn(user, (err) => {
+          req.session.user = req.user;
           if (err) throw err;
           res.status(201).send("Successfully Authenticated");
         });
