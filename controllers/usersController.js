@@ -1,5 +1,6 @@
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
 
 // require('../config/user')(passport);
 const User = require('../models/user-model');
