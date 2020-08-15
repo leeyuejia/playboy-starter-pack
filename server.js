@@ -53,7 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use('/', MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter);
+app.use('/app', MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter);
 
 // Start Server
 app.listen(PORT, () => {
