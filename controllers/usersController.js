@@ -30,6 +30,7 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
             const newUser = new User({
+              _id: mongoose.Types.ObjectId(),
               username: req.body.username,
               email: req.body.email,
               profileImg: req.body.profileImg,
