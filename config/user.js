@@ -25,12 +25,12 @@ module.exports = function (passport) {
     console.log(`serial with ${user._id}`)
   });
 
-  passport.deserializeUser((id, cb) => {
-    User.findById(id, (err, user) => {
+  passport.deserializeUser(async (id, cb) => {
+    await User.findById(id, (err, user) => {
       console.log('line 31',user._id)
       console.log('line 32',id)
       console.log(`deserial with ${id}`)
-      cb(null, user);
+      return cb(null, user);
     });
   });
 };
