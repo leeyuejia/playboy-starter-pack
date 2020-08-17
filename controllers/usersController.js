@@ -1,5 +1,6 @@
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
+const mongoose = require('mongoose');
 
 // require('../config/user')(passport);
 const User = require('../models/user-model');
@@ -32,6 +33,7 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
             const newUser = new User({
+              _id: mongoose.Types.ObjectId(),
               username: req.body.username,
               email: req.body.email,
               profileImg: req.body.profileImg,
