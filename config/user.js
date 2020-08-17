@@ -30,7 +30,7 @@ module.exports = function (passport) {
       console.log('line 31',user._id)
       console.log('line 32',id)
       console.log(`deserial with ${id}`)
-      return cb(null, user);
+      cb(null, user);
     });
   });
 };
