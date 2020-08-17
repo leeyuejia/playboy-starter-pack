@@ -9,7 +9,9 @@ const User = require('../models/user-model');
 
 module.exports = {
   login(req, res, next) {
+    console.log('req.body' ,req.body)
     passport.authenticate("local", (err, user, info) => {
+      console.log('user' , user)
       if (err) throw err;
       if (!user) res.status(400).send("No User Exists");
       else {
@@ -51,6 +53,7 @@ module.exports = {
     
   },
   getUser(req, res) {
+    console.log('req.user is ' + req.user._id)
     res.send(req.user) // The req.user stores the entire user that has been authenticated inside of it. 
     //can be used for the rest of the app
   },
