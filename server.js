@@ -25,7 +25,8 @@ app.use(cookieParser('secret','some secret', {
 // }));
 // app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.enable('trust proxy');
 app.use(
   cors({
     origin: ['https://playboy-starter-pack-frontend.herokuapp.com', 'http://localhost:8000'],
