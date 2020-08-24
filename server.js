@@ -4,7 +4,7 @@ const express = require('express');
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 const passport = require("passport");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser"); // use cookie
 const session = require("express-session");
 // const bodyParser = require("body-parser");
 
@@ -15,13 +15,19 @@ require('./db');
 const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = require('./routes');
 
 // Middleware
+app.use(cookieParser('secret', {
+  sameSite : 'none',
+  secure :true
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: ['https://playboy-starter-pack-frontend.herokuapp.com', 'http://localhost:8000'],
+    // origin: true, // trying this
     credentials: true,
+    'Access-Control-Allow-Credentials': true, // trying this
     methods: 'GET, PUT, POST, DELETE'
   })
 );
@@ -43,10 +49,12 @@ app.use(
 app.use(
   session({
     secret: "secretcode",
-    resave: true,
-    saveUninitialized: true,
+    resave: false, // changed to false
+    saveUninitialized: false, // changed to false
   })
 );
+
+
 
 // app.use(cookieParser("secretcode"));
 require('./config/user')(passport);
