@@ -9,17 +9,21 @@ const User = require('../models/user-model');
 
 module.exports = {
   login(req, res, next) {
-    console.log('req.body' ,req.body)
+    console.log('reqbody',req.body)
     passport.authenticate("local", (err, user, info) => {
-      console.log('user' , user)
+      console.log('user' , user.username)
       if (err) throw err;
       if (!user) res.status(400).send("No User Exists");
       else {
         req.login(user, (err) => {
-          // req.session.user = req.user;
           if (err) throw err;
+          res.cookie('name', user.username, { // setting cookies
+            expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
+            secure: true,
+            sameSite: 'none'
+          })
           res.status(201).send("Successfully Authenticated");
-        });
+        })
       }
     })(req, res, next);
   },
