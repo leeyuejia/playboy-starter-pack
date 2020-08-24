@@ -15,11 +15,15 @@ require('./db');
 const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = require('./routes');
 
 // Middleware
-app.use(cookieParser('secret', {
+app.use(cookieParser('secret','some secret', {
   sameSite : 'none',
   secure :true
 }))
 
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
+// app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.enable('trust proxy');
