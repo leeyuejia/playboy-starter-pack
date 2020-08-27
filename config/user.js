@@ -33,4 +33,9 @@ module.exports = function (passport) {
       return cb(null, user);
     });
   });
+  app.use((req, res, next) => {
+    res.locals.login = req.isAuthenticated();
+    res.locals.thisUser = req.user;
+    next();
+  });
 };

@@ -22,7 +22,6 @@ module.exports = {
           //   secure: true,
           //   sameSite: 'none'
           // })
-          res.cookie('userid', user.id, { maxAge: 2592000000 });  // Expires in one month
           res.status(201).send("Successfully Authenticated");
         })
       }
