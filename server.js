@@ -55,16 +55,8 @@ app.use(
     secret: "secretcode",
     resave: false, // changed to false
     saveUninitialized: false, // changed to false
-    cookie: {
-      sameSite: 'none'
-    }
   })
 );
-
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', 1); // trust first proxy
-  sessionConfig.cookie.secure = true; // serve secure cookies
-}
 
 // app.use(cookieParser("secretcode"));
 require('./config/user')(passport);
