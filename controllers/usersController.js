@@ -17,11 +17,12 @@ module.exports = {
       else {
         req.login(user, (err) => {
           if (err) throw err;
-          res.cookie('name', user.username, { // setting cookies
-            expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
-            secure: true,
-            sameSite: 'none'
-          })
+          // res.cookie('name', user.username, { // setting cookies
+          //   expires : new Date(Date.now() + 12 * 360000), // cookies expires after 12 hours
+          //   secure: true,
+          //   sameSite: 'none'
+          // })
+          res.cookie('userid', user.id, { maxAge: 2592000000 });  // Expires in one month
           res.status(201).send("Successfully Authenticated");
         })
       }
