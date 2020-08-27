@@ -19,21 +19,6 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 //   sameSite : 'none',
 //   secure :true
 // }))
-app.use(
-  session({
-    secret: "secretcode",
-    resave: false, // changed to false
-    saveUninitialized: false, // changed to false
-    cookie: {
-      sameSite: 'none'
-    }
-  })
-);
-
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', 1); // trust first proxy
-  sessionConfig.cookie.secure = true; // serve secure cookies
-}
 
 // app.use(bodyParser.urlencoded({
 //   extended: true
@@ -65,6 +50,21 @@ app.use(
 // }
 
 // app.use(session(sess));
+app.use(
+  session({
+    secret: "secretcode",
+    resave: false, // changed to false
+    saveUninitialized: false, // changed to false
+    cookie: {
+      sameSite: 'none'
+    }
+  })
+);
+
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1); // trust first proxy
+  sessionConfig.cookie.secure = true; // serve secure cookies
+}
 
 // app.use(cookieParser("secretcode"));
 require('./config/user')(passport);
