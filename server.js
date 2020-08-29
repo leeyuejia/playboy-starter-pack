@@ -26,7 +26,7 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.enable('trust proxy');
+app.set('trust proxy', 1);  // must be initialized before your cookies setting
 app.use(
   cors({
     origin: ['https://playboy-starter-pack-frontend.herokuapp.com', 'http://localhost:8000'],
@@ -54,7 +54,11 @@ app.use(
   session({
     secret: "secretcode",
     resave: false, // changed to false
-    saveUninitialized: false, // changed to false
+    saveUninitialized: true, // changed to true
+    cookie: {
+      sameSite: 'none',
+      secure: true
+    }
   })
 );
 
