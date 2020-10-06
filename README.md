@@ -17,6 +17,8 @@ description
 - backend deployed link ==> https://playboy-starter-pack-backend.herokuapp.com/app
 - frontend deployed link ==> https://playboy-starter-pack-frontend.herokuapp.com/
 
+USING COMMON HEROKU ACCOUNT (details in trello board)
+
 
 ## Table of Contents
 - [Introduction](#Introduction)

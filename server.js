@@ -18,7 +18,7 @@ const { MemesRouter, GifsRouter, PunsRouter, UsersRouter, GeneralRouter } = requ
 // Middleware
 app.use(cookieParser('secret','some secret', {
   sameSite : 'none',
-  secure :true
+  secret: true
 }))
 
 // app.use(bodyParser.urlencoded({
@@ -30,12 +30,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: ['https://playboy-starter-pack-frontend.herokuapp.com', 'http://localhost:8000'],
-    // origin: true, // trying this
     credentials: true,
     'Access-Control-Allow-Credentials': true, // trying this
     methods: 'GET, PUT, POST, DELETE'
   })
 );
+
 app.set('trust proxy', 1)
 // let sess = {
 //   secret: 'secretcode',
